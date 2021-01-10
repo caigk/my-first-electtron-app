@@ -1,0 +1,39 @@
+{
+  "name": "my-first-electtron-app",
+  "version": "1.0.0",
+  "description": "",
+  "projectName":"electron应用",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": " npm run build-mac && npm run build-linux && npm run build-win32",
+    "build-mac": "electron-packager . --out=build  --icon=myFirst.icns --overwrite --asar --platform=darwin",
+    "build-linux": "electron-packager . --out=build  --icon=myFirst.icns --overwrite --platform=linux",
+    "build-win32": "electron-packager . --out=build  --icon=myFirst.icns --overwrite --platform=win32",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "electron": "^11.1.1",
+    "html-webpack-plugin": "^4.5.1",
+    "redux-devtools-extension": "^2.13.8",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.12.1",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta1",
+    "history": "^5.0.0",
+    "jquery": "^3.5.1",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.5"
+  }
+}
