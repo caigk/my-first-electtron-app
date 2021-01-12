@@ -7,9 +7,9 @@ app.on('ready', () => {
 	// 不推荐
 	mainWindow = new BrowserWindow({
 		webPreferences: {
-			nodeIntegration: true,
-			nodeIntegrationInWorker: true,
-			webSecurity: false,
+			//nodeIntegration: true,
+			//nodeIntegrationInWorker: true,
+			//webSecurity: false,
 			enableRemoteModule: true
 		},
 		show: false

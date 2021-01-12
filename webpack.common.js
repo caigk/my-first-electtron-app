@@ -6,15 +6,6 @@ module.exports = {
 	// devServer: {
 	// 	contentBase: './'
 	// },
-	resolve: {
-		//配置别名，在项目中可缩减引用路径
-		alias: {
-			'@': path.resolve('src'),
-			'&': path.resolve('src/components'),
-			'api': path.resolve('src/api'),
-			'assets': path.resolve('src/assets')
-		},
-	},
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist')

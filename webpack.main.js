@@ -8,7 +8,7 @@ var nodeExternals = require('webpack-node-externals');
 
 module.exports = merge(common, {
 	entry: {
-		main: './src/app/main.js'
+		main: './src/app/electron-main/main.js'
 	},
 	devtool: 'inline-source-map',
 	mode: 'development',

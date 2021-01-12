@@ -29,11 +29,12 @@ module.exports = merge(common, {
 	resolve: {
 		//配置别名，在项目中可缩减引用路径
 		alias: {
-			'@': path.resolve('src'),
-			'&': path.resolve('src/components'),
-			'api': path.resolve('src/api'),
-			'assets': path.resolve('assets')
+			'@': path.resolve('src/app/electron-browser/'),
+			'&': path.resolve('src/app/electron-browser/components/'),
+			'api': path.resolve('src/app/electron-browser/api'),
+			'assets': path.resolve('src/app/electron-browser/assets')
 		},
+
 	},
 	module: {
 		rules: [
@@ -86,9 +87,9 @@ module.exports = merge(common, {
 			}
 		]
 	},
-	target: "electron-renderer",
-	externals: [
-		/mainlib/i,
-		nodeExternals()
-	]
+	target: "web",
+	// externals: [
+	// 	/mainlib/i,
+	// 	nodeExternals()
+	// ]
 });
