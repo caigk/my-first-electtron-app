@@ -15,7 +15,8 @@ app.on('ready', () => {
 		show: false
 	})
 
-	mainWindow.loadFile('app/pre/index.html');
+	//mainWindow.webContents.openDevTools({mode:'right'});
+	mainWindow.loadFile(__dirname+'/index.html');
 
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
@@ -30,19 +31,3 @@ app.on('ready', () => {
 	});
 });
 
-
-
-function openUserFile() {
-	dialog.showOpenDialog(mainWindow,{
-		properties: ['openFile']
-	}).then(result => {
-		console.log(result.canceled)
-		console.log(result.filePaths)
-
-		mainWindow.webContents.send('file-opened','********');
-	}).catch(err => {
-		console.log(err)
-	});
-}
-
-module.exports = { openUserFile };
