@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
+const Mock = require('./mock/mock.js');
 
 
 module.exports = merge(common, {
@@ -14,6 +15,9 @@ module.exports = merge(common, {
 	mode: 'development',
 	devServer: {
 		contentBase: './',
+		before(app){
+		  Mock(app)
+		}
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

@@ -26,6 +26,9 @@ const hashHistory = createHashHistory()
 
 import { Header, Footer } from './components/layout';
 
+import {newDoc} from './redux/editorActions';
+
+
 ReactDOM.render((
 	<Provider store={store}>
 		<Header></Header>
@@ -33,7 +36,7 @@ ReactDOM.render((
 			<div className="row p-1">
 				<div className="btn-toolbar">
 					<div className="btn-group">
-						<button className=" btn btn-secondary">新建</button>
+						<button className=" btn btn-secondary" onClick={()=>store.dispatch(newDoc())}>新建</button>
 						<button className="btn btn-primary">打开</button>
 						<button className="btn btn-primary">保存</button>
 					</div>

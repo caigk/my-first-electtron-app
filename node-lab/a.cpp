@@ -3,9 +3,8 @@ using namespace std;
 
 int main()
 {
-    int sum =0,score = 0,max = 0,min = 101;
-    cout << "请输入要计算的成绩(1-100)，用空格分开，回车结束输入(例:2 3 4 5\\n)："
-        <<endl;
+    int sum =0,score = 0,max = 0,min = 1001,n;
+
     while(cin>>score)
     {
         cout<<"成绩："<<score<<endl;

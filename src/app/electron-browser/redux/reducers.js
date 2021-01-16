@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
 // 引入 reducer 及 actionCreator
-import main, { MainActions } from './mainRedux';
+import editor from './editorRedux';
 
 
-const data = combineReducers({
-  main,
-});
+const reducer = combineReducers({editor});
 
-export { data as default, MainActions };
+export { reducer as default };

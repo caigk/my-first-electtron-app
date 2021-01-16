@@ -8,6 +8,8 @@ import rootReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { assign } from 'lodash';
 
+import LoggerMiddleware from './redux-logger';
+
 // const FetchMiddleware = createFetchMiddleware({
 //   afterFetch({ action, result }) {
 //     debugger;
@@ -21,17 +23,18 @@ import { assign } from 'lodash';
 // });
 
 const finalCreateStore = composeWithDevTools(
-  //applyMiddleware(ThunkMiddleware, FetchMiddleware),
+  applyMiddleware(
+    LoggerMiddleware,
+    // ThunkMiddleware, 
+    // FetchMiddleware
+    ),
 )(createStore);
 
 const reducer = combineReducers(
-  assign(
-    {},
-    rootReducer,
-    {
-      routing: routerReducer,
-    }
-  ));
+  {
+    root:rootReducer,
+    routing: routerReducer
+  });
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState);
