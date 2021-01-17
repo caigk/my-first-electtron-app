@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 const Mock = require('./mock/mock.js');
 
-
 module.exports = merge(common, {
 	entry: {
 		renderer: path.resolve('src/app/electron-browser/index.js')
@@ -31,9 +30,10 @@ module.exports = merge(common, {
 		})
 	],
 	resolve: {
+		extensions: [ '.tsx', '.ts', '.js','.json' ],
 		//配置别名，在项目中可缩减引用路径
 		alias: {
-			'@': path.resolve('src/app/electron-browser/'),
+			'@': path.resolve('./src/'),
 			'&': path.resolve('src/app/electron-browser/components/'),
 			'api': path.resolve('src/app/electron-browser/api'),
 			'assets': path.resolve('src/app/electron-browser/assets')

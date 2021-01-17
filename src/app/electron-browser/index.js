@@ -25,34 +25,12 @@ const hashHistory = createHashHistory()
 //const history = syncHistoryWithStore(hashHistory, store);
 
 import { Header, Footer } from './components/layout';
-
-import {newDoc} from './redux/editorActions';
-
+import Main from './pages/main'
 
 ReactDOM.render((
 	<Provider store={store}>
 		<Header></Header>
-		<main className="container-fluid h-100 d-flex flex-column">
-			<div className="row p-1">
-				<div className="btn-toolbar">
-					<div className="btn-group">
-						<button className=" btn btn-secondary" onClick={()=>store.dispatch(newDoc())}>新建</button>
-						<button className="btn btn-primary">打开</button>
-						<button className="btn btn-primary">保存</button>
-					</div>
-					<div className="btn-group ms-2">
-						<button className="btn btn-secondary">生成</button>
-					</div>
-					<div className="btn-group ms-2">
-						<button className="btn btn-secondary" onClick={ ()=>alert('ok')}>关闭</button>
-					</div>
-				</div>
-			</div>
-			<div className="row flex-fill p-1">
-				<textarea id="txtSource" className="col-md-6"></textarea>
-				<textarea className="col-md-6"></textarea>
-			</div>
-		</main>
+		<Main className="container-fluid h-100"></Main>
 		<Footer></Footer>
 	</Provider>
 ), document.getElementById('App'));

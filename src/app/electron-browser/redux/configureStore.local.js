@@ -10,6 +10,11 @@ import { assign } from 'lodash';
 
 import LoggerMiddleware from './redux-logger';
 
+import { helloSaga,watchAndLog } from './sagas'
+import createSagaMiddleware from 'redux-saga';
+
+import  EditorSaga from './editorSaga.web';
+
 // const FetchMiddleware = createFetchMiddleware({
 //   afterFetch({ action, result }) {
 //     debugger;
@@ -22,22 +27,27 @@ import LoggerMiddleware from './redux-logger';
 //   },
 // });
 
+const sagaMw = createSagaMiddleware();
 const finalCreateStore = composeWithDevTools(
   applyMiddleware(
-    LoggerMiddleware,
+    sagaMw,
+    //LoggerMiddleware,
     // ThunkMiddleware, 
     // FetchMiddleware
-    ),
+  ),
 )(createStore);
 
 const reducer = combineReducers(
   {
-    root:rootReducer,
+    root: rootReducer,
     routing: routerReducer
   });
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState);
   //const store = createStore(reducer, initialState);
+
+  sagaMw.run(EditorSaga.registerWatch);
+
   return store;
 }
