@@ -1,8 +1,9 @@
 
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, take, takeLatest } from 'redux-saga/effects'
 
 import {
 	ACTION_OPEN_DOC,
+	ACTION_OPEN_DOC_FINISHED,
 	ACTION_OPEN_DOC_SUCCESS,
 	ACTION_SAVE_DOC,
 	ACTION_SAVE_DOC_SUCCESS,
@@ -13,27 +14,42 @@ import {
 } from "@/typings/action.d"
 import { AlertType } from "@/typings/store.d";
 
+
+import { ipcRenderer } from 'electron';
+import { SagaMiddleware } from 'redux-saga';
+
+
+
+function* addLisener(sagaMw: SagaMiddleware) {
+	ipcRenderer.on(ACTION_OPEN_DOC_FINISHED, (event, payload) => {
+		console.info('ipcRenderer ' + ACTION_OPEN_DOC_FINISHED);
+		console.info(payload);
+
+		//注意从外部运行saga
+		sagaMw.run(function* () {
+			yield put({
+				type: ACTION_OPEN_DOC_FINISHED,
+				payload: payload
+			});
+		})
+
+	});
+}
+
 const ActionSaga: IActionSaga = {
 	*openDoc() {
 		try {
-			const resp = yield call(
-				fetch,
-				'/open',
-				{
-					method: "GET",
-					mode: 'cors',
-					headers: { 'Accept': 'application/json' },
-				});
-
-			//yield call([obj, obj.method], arg1, arg2, ...) 如同 obj.method(arg1, arg2 ...)
-			const data = yield call([resp, resp.json]);
-			console.log(data);
+			yield ipcRenderer.send(ACTION_OPEN_DOC);
+			debugger;
+			const action = yield take(ACTION_OPEN_DOC_FINISHED);
+			console.log('-----');
+			console.log(action);
 
 			yield put({
 				type: ACTION_OPEN_DOC_SUCCESS,
 				payload: {
 					success: true,
-					data: data
+					data: action.payload
 				}
 			});
 
@@ -53,8 +69,7 @@ const ActionSaga: IActionSaga = {
 				});
 
 			if (resp.status >= 200 && resp.status <= 299) {
-				//yield call([obj, obj.method], arg1, arg2, ...) 如同 obj.method(arg1, arg2 ...)
-				const data = yield call([resp, resp.json]);
+				const data = yield call(resp.json.bind(resp));
 				console.log(data);
 
 				yield put({
@@ -83,12 +98,14 @@ const ActionSaga: IActionSaga = {
 	*generateDoc() {
 
 	},
-	*close() {
-		window.close();
+	*close(){
+		ipcRenderer.send(ACTION_CLOSE);
 	},
 	*registerWatch(sagaMw) {
+
 		console.info('registerWatch start ...');
-		console.info(sagaMw);
+
+		yield addLisener(sagaMw);
 
 		yield takeLatest(ACTION_OPEN_DOC, ActionSaga.openDoc);
 		yield takeLatest(ACTION_SAVE_DOC, ActionSaga.saveDoc);

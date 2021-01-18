@@ -12,7 +12,7 @@ class Main extends Component {
     }
     render() {
         //debugger;
-        const { newDoc, openDoc, saveDoc } = this.props.EditorAction;
+        const { newDoc, openDoc, saveDoc ,close} = this.props.EditorAction;
         const { content } = this.props.source;
         const errores = this.props.errores || [];
         return (
@@ -28,7 +28,7 @@ class Main extends Component {
                             <button className="btn btn-secondary">生成</button>
                         </div>
                         <div className="btn-group ms-2">
-                            <button className="btn btn-secondary" onClick={() => alert('ok')}>关闭</button>
+                            <button className="btn btn-secondary" onClick={() => close()}>关闭</button>
                         </div>
                     </div>
                 </div>

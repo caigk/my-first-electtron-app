@@ -26,7 +26,7 @@ module.exports = merge(common, {
 		}),
 		new webpack.ProvidePlugin({}),
 		new webpack.DefinePlugin({
-			'ENV': JSON.stringify('local')
+			'ENV': JSON.stringify('web')
 		})
 	],
 	resolve: {

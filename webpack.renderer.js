@@ -12,9 +12,6 @@ module.exports = merge(common, {
 	},
 	devtool: 'inline-source-map',
 	mode: 'development',
-	devServer: {
-		contentBase: './',
-	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve('src/app/electron-browser/index.html'),
@@ -22,11 +19,12 @@ module.exports = merge(common, {
 			//base: path.resolve('dist/')
 		}),
 		new webpack.ProvidePlugin({}),
-		new webpack.DefinePlugin({
-			'ENV': JSON.stringify('local')
+		new webpack.DefinePlugin({ //这个插件直接执行文本替换，给定的值必须包含字符串本身内的实际引号。
+			'ENV': JSON.stringify('renderer')
 		})
 	],
 	resolve: {
+		extensions: [ '.tsx', '.ts', '.js','.json' ],
 		//配置别名，在项目中可缩减引用路径
 		alias: {
 			'@': path.resolve('src'),
@@ -89,6 +87,6 @@ module.exports = merge(common, {
 	target: "electron-renderer",
 	externals: [
 		/mainlib/i,
-		nodeExternals()
+		nodeExternals(),	//注意与主进程开放的对象有关，
 	]
 });

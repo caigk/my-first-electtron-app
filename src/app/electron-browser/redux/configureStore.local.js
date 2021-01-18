@@ -13,8 +13,6 @@ import LoggerMiddleware from './redux-logger';
 import { helloSaga,watchAndLog } from './sagas'
 import createSagaMiddleware from 'redux-saga';
 
-import  EditorSaga from './editorSaga.web';
-
 // const FetchMiddleware = createFetchMiddleware({
 //   afterFetch({ action, result }) {
 //     debugger;
@@ -47,7 +45,12 @@ export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState);
   //const store = createStore(reducer, initialState);
 
-  sagaMw.run(EditorSaga.registerWatch);
-
+  import('./editorSaga.'+ENV)
+  .then(m=>{
+    console.log("dynamic import >>>");
+    console.log(m);
+    sagaMw.run(m.default.registerWatch,sagaMw);
+  });
+  
   return store;
 }

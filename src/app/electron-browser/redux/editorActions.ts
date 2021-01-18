@@ -1,5 +1,11 @@
 
-import {NEW_DOC,OPEN_DOC,OPEN_DOC_SUCCESS,SAVE_DOC,GENERATE_DOC} from "@/typings/action.d"
+import {
+	NEW_DOC,
+	ACTION_OPEN_DOC, 
+	ACTION_SAVE_DOC, 
+	ACTION_GENERATE_DOC,
+	ACTION_CLOSE
+} from "@/typings/action.d"
 
 /**
    * 新建
@@ -13,20 +19,27 @@ export function newDoc() {
 
 export function openDoc() {
 	return {
-		type: OPEN_DOC
+		type: ACTION_OPEN_DOC
 	};
 }
 
 
 export function saveDoc() {
 	return {
-		type: SAVE_DOC
+		type: ACTION_SAVE_DOC
 	};
 }
 
 export function generateDoc() {
 	return {
-		type: GENERATE_DOC
+		type: ACTION_GENERATE_DOC
+	};
+}
+
+
+export function close() {
+	return {
+		type: ACTION_CLOSE
 	};
 }
 
@@ -35,5 +48,6 @@ const Actions = {
 	openDoc,
 	saveDoc,
 	generateDoc,
+	close
 };
 export default Actions;

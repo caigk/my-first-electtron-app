@@ -2,7 +2,7 @@
 //import _, { assign, forEach, find } from 'lodash';
 //const { API_URL } = require(`../../config/${ENV}.json`);
 
-import { NEW_DOC, OPEN_DOC_SUCCESS, SAVE_DOC_SUCCESS, ALERT } from '@/typings/action.d';
+import { NEW_DOC, ACTION_OPEN_DOC_SUCCESS, ACTION_SAVE_DOC_SUCCESS, ACTION_ALERT } from '@/typings/action.d';
 import { EditorType } from '@/typings/store.d';
 import { Action } from 'redux';
 
@@ -45,21 +45,22 @@ function reducer(state = initialState, action: Action) {
         }
       };
     }
-    case OPEN_DOC_SUCCESS: {
+    case ACTION_OPEN_DOC_SUCCESS: {
       //debugger;
+      console.log("reducer open...");
       const source = action.payload.data;
       return {
         ...state,
         source
       };
     }
-    case SAVE_DOC_SUCCESS: {
+    case ACTION_SAVE_DOC_SUCCESS: {
       //debugger;
       return {
         ...state,
       };
     }
-    case ALERT: {
+    case ACTION_ALERT: {
       //debugger;
       const errores = action.payload;
       return {
