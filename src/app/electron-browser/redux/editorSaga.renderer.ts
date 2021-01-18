@@ -1,9 +1,8 @@
 
-import { call, put, take, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import {
 	ACTION_OPEN_DOC,
-	ACTION_OPEN_DOC_FINISHED,
 	ACTION_OPEN_DOC_SUCCESS,
 	ACTION_SAVE_DOC,
 	ACTION_SAVE_DOC_SUCCESS,
@@ -16,36 +15,17 @@ import { AlertType } from "@/typings/store.d";
 
 
 import { ipcRenderer } from 'electron';
-import { SagaMiddleware } from 'redux-saga';
-
-
-
-function* addLisener(sagaMw: SagaMiddleware) {
-	ipcRenderer.on(ACTION_OPEN_DOC_FINISHED, (event, payload) => {
-		console.info('ipcRenderer ' + ACTION_OPEN_DOC_FINISHED);
-		console.info(payload);
-
-		//注意从外部运行saga
-		sagaMw.run(function* () {
-			yield put({
-				type: ACTION_OPEN_DOC_FINISHED,
-				payload: payload
-			});
-		})
-
-	});
-}
 
 const ActionSaga: IActionSaga = {
 	*openDoc() {
 		try {
-			yield ipcRenderer.send(ACTION_OPEN_DOC);
-			const action = yield take(ACTION_OPEN_DOC_FINISHED);
+			const result = yield ipcRenderer.invoke(ACTION_OPEN_DOC);
+			if(!result) return;
 			yield put({
 				type: ACTION_OPEN_DOC_SUCCESS,
 				payload: {
 					success: true,
-					data: action.payload
+					data: result
 				}
 			});
 
@@ -101,7 +81,7 @@ const ActionSaga: IActionSaga = {
 
 		console.info('registerWatch start ...');
 
-		yield addLisener(sagaMw);
+		//yield addLisener(sagaMw);
 
 		yield takeLatest(ACTION_OPEN_DOC, ActionSaga.openDoc);
 		yield takeLatest(ACTION_SAVE_DOC, ActionSaga.saveDoc);

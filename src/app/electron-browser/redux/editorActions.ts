@@ -1,6 +1,6 @@
 
 import {
-	NEW_DOC,
+	ACTION_NEW_DOC,
 	ACTION_OPEN_DOC, 
 	ACTION_SAVE_DOC, 
 	ACTION_GENERATE_DOC,
@@ -13,7 +13,7 @@ import {
 
 export function newDoc() {
 	return {
-		type: NEW_DOC
+		type: ACTION_NEW_DOC
 	};
 }
 

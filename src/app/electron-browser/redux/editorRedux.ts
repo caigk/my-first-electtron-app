@@ -2,7 +2,7 @@
 //import _, { assign, forEach, find } from 'lodash';
 //const { API_URL } = require(`../../config/${ENV}.json`);
 
-import { NEW_DOC, ACTION_OPEN_DOC_SUCCESS, ACTION_SAVE_DOC_SUCCESS, ACTION_ALERT } from '@/typings/action.d';
+import { ACTION_NEW_DOC, ACTION_OPEN_DOC_SUCCESS, ACTION_SAVE_DOC_SUCCESS, ACTION_ALERT } from '@/typings/action.d';
 import { EditorType } from '@/typings/store.d';
 import { Action } from 'redux';
 
@@ -29,7 +29,7 @@ const initialState: EditorType = {
  */
 function reducer(state = initialState, action: Action) {
   switch (action.type) {
-    case NEW_DOC: {
+    case ACTION_NEW_DOC: {
       return {
         ...state,
         source: {

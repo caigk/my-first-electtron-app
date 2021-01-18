@@ -1,5 +1,5 @@
-const { app, BrowserWindow, dialog,ipcMain } = require('electron');
-const { readFile } = require('fs');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { readFile } = require('fs').promises;
 const path = require('path');
 
 let mainWindow = null;
@@ -13,14 +13,14 @@ app.on('ready', () => {
 			//nodeIntegrationInWorker: true,
 			//webSecurity: false,
 			enableRemoteModule: false,
-			contextIsolation:false,
+			contextIsolation: false,
 			//preload:'',
 		},
 		show: false
 	})
 
 	//mainWindow.webContents.openDevTools({mode:'right'});
-	mainWindow.loadFile(__dirname+'/index.html');
+	mainWindow.loadFile(__dirname + '/index.html');
 
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
@@ -30,41 +30,39 @@ app.on('ready', () => {
 		mainWindow = null;
 	});
 
-	ipcMain.on('ACTION_CLOSE',()=>{
+	ipcMain.on('ACTION_CLOSE', () => {
 		mainWindow.close();
 	});
 
-	ipcMain.on('ACTION_OPEN_DOC',()=>{
+	//注意handle的用法，ipcRenderer.invoke()
+	ipcMain.handle('ACTION_OPEN_DOC', async () => {
 		console.info('ipcMain ACTION_OPEN_DOC');
-		dialog.showOpenDialog(mainWindow, {
-			buttonLabel: "打开",
-			filters: [
-				{ name: 'Tex', extensions: ['tex', 'latex','txt','md'] }
-			],
-			properties: ['openFile']
-		}).then(result => {
+		try {
+			const result = await dialog.showOpenDialog(mainWindow, {
+				buttonLabel: "打开",
+				filters: [
+					{ name: 'Tex', extensions: ['tex', 'latex', 'txt', 'md'] }
+				],
+				properties: ['openFile']
+			});
+
 			// console.log(result.canceled);
 			// console.log(result.filePaths);
-	
-			if (result.canceled) return;
-	
-			readFile(result.filePaths[0], (err, buffer) => {
-				if (err) {
-					console.log(err);
-					return;
-				}
-	
-				const content = buffer.toString();
-				//console.log(content);
-				mainWindow.webContents.send('ACTION_OPEN_DOC_FINISHED', {
-					fileName: path.basename(result.filePaths[0]),
-					path: result.filePaths[0],
-					content:content
-				})
-			});
-		}).catch(err => {
+
+			if (result.canceled) return false;
+
+			const buffer = await readFile(result.filePaths[0]);
+			const content = buffer.toString();
+			//console.log(content);
+			return {
+				fileName: path.basename(result.filePaths[0]),
+				path: result.filePaths[0],
+				content: content
+			};
+		}
+		catch (err) {
 			console.log(err)
-		});
+		};
 	});
 });
 
