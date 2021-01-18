@@ -12,7 +12,9 @@ app.on('ready', () => {
 			nodeIntegration: true,	//注意与webpack配置文件中的外部对象有关
 			//nodeIntegrationInWorker: true,
 			//webSecurity: false,
-			enableRemoteModule: true
+			enableRemoteModule: false,
+			contextIsolation:false,
+			//preload:'',
 		},
 		show: false
 	})

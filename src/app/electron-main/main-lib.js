@@ -1,5 +1,5 @@
 
-
+//暂时不用了
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const { readFile } = require('fs');
 

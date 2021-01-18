@@ -40,11 +40,7 @@ const ActionSaga: IActionSaga = {
 	*openDoc() {
 		try {
 			yield ipcRenderer.send(ACTION_OPEN_DOC);
-			debugger;
 			const action = yield take(ACTION_OPEN_DOC_FINISHED);
-			console.log('-----');
-			console.log(action);
-
 			yield put({
 				type: ACTION_OPEN_DOC_SUCCESS,
 				payload: {
