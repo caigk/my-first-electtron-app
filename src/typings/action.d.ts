@@ -14,6 +14,11 @@ export const ACTION_OPEN_DOC = 'ACTION_OPEN_DOC';
 export const ACTION_OPEN_DOC_SUCCESS = 'ACTION_OPEN_DOC_SUCCESS';
 
 /**
+ * 编辑文档
+ */
+export const ACTION_EDITED_DOC = 'ACTION_EDITED_DOC';
+
+/**
  * 保存文档
  */
 export const ACTION_SAVE_DOC = 'ACTION_SAVE_DOC';
@@ -27,6 +32,12 @@ export const ACTION_SAVE_DOC_SUCCESS = 'ACTION_SAVE_DOC_SUCCESS';
  * 生成文档
  */
 export const ACTION_GENERATE_DOC = 'ACTION_GENERATE_DOC';
+
+/**
+ * 生成文档成功
+ */
+export const ACTION_GENERATE_DOC_SUCCESS = 'ACTION_GENERATE_DOC_SUCCESS';
+
 
 /**
  * 报警

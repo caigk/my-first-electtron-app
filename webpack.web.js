@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
-const Mock = require('./mock/mock.js');
+const Mock = require('./mock/mock');
 
 module.exports = merge(common, {
 	entry: {
@@ -14,8 +14,8 @@ module.exports = merge(common, {
 	mode: 'development',
 	devServer: {
 		contentBase: './',
-		before(app){
-		  Mock(app)
+		before(app) {
+			Mock(app)
 		}
 	},
 	plugins: [
@@ -30,7 +30,7 @@ module.exports = merge(common, {
 		})
 	],
 	resolve: {
-		extensions: [ '.tsx', '.ts', '.js','.json' ],
+		extensions: ['.tsx', '.ts', '.js', '.json'],
 		//配置别名，在项目中可缩减引用路径
 		alias: {
 			'@': path.resolve('./src/'),

@@ -12,9 +12,16 @@ class Main extends Component {
     }
     render() {
         //debugger;
-        const { newDoc, openDoc, saveDoc ,close} = this.props.EditorAction;
-        const { content } = this.props.source;
+        const { newDoc,
+            openDoc,
+            editDoc,
+            saveDoc,
+            generateDoc,
+            close
+        } = this.props.EditorAction;
+        const { content, content0 } = this.props.source;
         const errores = this.props.errores || [];
+        console.log(content);
         return (
             <main className={clsx(this.props.className, 'd-flex', 'flex-column')}>
                 <div className="row p-1">
@@ -25,7 +32,7 @@ class Main extends Component {
                             <button className="btn btn-primary" onClick={() => saveDoc()}>保存</button>
                         </div>
                         <div className="btn-group ms-2">
-                            <button className="btn btn-secondary">生成</button>
+                            <button className="btn btn-secondary" onClick={() => generateDoc()}>生成</button>
                         </div>
                         <div className="btn-group ms-2">
                             <button className="btn btn-secondary" onClick={() => close()}>关闭</button>
@@ -41,8 +48,8 @@ class Main extends Component {
                     ))}
                 </div>
                 <div className="row flex-fill p-1">
-                    <textarea id="txtSource" className="col-md-6" defaultValue={content}></textarea>
-                    <textarea className="col-md-6"></textarea>
+                    <textarea className="col-md-6" value={content} onChange={(ev) => { editDoc(ev.target.value) }}></textarea>
+                    <textarea className="col-md-6" readOnly value={content}></textarea>
                 </div>
             </main>
         );

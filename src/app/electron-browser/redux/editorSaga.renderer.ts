@@ -1,5 +1,5 @@
 
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest, select } from 'redux-saga/effects'
 
 import {
 	ACTION_OPEN_DOC,
@@ -11,8 +11,9 @@ import {
 	ACTION_CLOSE,
 	IActionSaga
 } from "@/typings/action.d"
-import { AlertType } from "@/typings/store.d";
 
+import { AlertType } from "@/typings/store.d";
+import { getSource } from './selectors';
 
 import { ipcRenderer } from 'electron';
 
@@ -20,7 +21,7 @@ const ActionSaga: IActionSaga = {
 	*openDoc() {
 		try {
 			const result = yield ipcRenderer.invoke(ACTION_OPEN_DOC);
-			if(!result) return;
+			if (!result) return;
 			yield put({
 				type: ACTION_OPEN_DOC_SUCCESS,
 				payload: {
@@ -35,30 +36,16 @@ const ActionSaga: IActionSaga = {
 	},
 	*saveDoc() {
 		try {
-			const resp = yield call(
-				fetch,
-				'/save',
-				{
-					method: "POST",
-					mode: 'cors',
-					headers: { 'Accept': 'application/json' },
-				});
-
-			if (resp.status >= 200 && resp.status <= 299) {
-				const data = yield call(resp.json.bind(resp));
-				console.log(data);
-
-				yield put({
-					type: ACTION_SAVE_DOC_SUCCESS,
-					payload: {
-						success: true,
-						data: data
-					}
-				});
-			}
-			else {
-				throw new Error('http response status:' + resp.status)
-			}
+			const { fileName, path, content } = yield select(getSource);
+			const result = ipcRenderer.invoke(ACTION_SAVE_DOC, path, content)
+			if (!result) return;
+			yield put({
+				type: ACTION_SAVE_DOC_SUCCESS,
+				payload: {
+					success: true,
+					data: result
+				}
+			});
 
 		} catch (error) {
 			console.error(error);
@@ -74,7 +61,7 @@ const ActionSaga: IActionSaga = {
 	*generateDoc() {
 
 	},
-	*close(){
+	*close() {
 		ipcRenderer.send(ACTION_CLOSE);
 	},
 	*registerWatch(sagaMw) {

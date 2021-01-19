@@ -19,12 +19,13 @@ module.exports = merge(common, {
 		})
 	],
 	resolve: {
+		extensions: [ '.tsx', '.ts', '.js','.json' ],
 		//配置别名，在项目中可缩减引用路径
 		alias: {
 			'@': path.resolve('src'),
-			'&': path.resolve('src/components'),
-			'api': path.resolve('src/api'),
-			'assets': path.resolve('assets')
+			// '&': path.resolve('src/components'),
+			// 'api': path.resolve('src/api'),
+			// 'assets': path.resolve('assets')
 		},
 	},
 	target: "electron-main",

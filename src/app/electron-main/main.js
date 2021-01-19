@@ -1,6 +1,5 @@
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
-const { readFile } = require('fs').promises;
-const path = require('path');
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import registerHandles from './main-handles';
 
 let mainWindow = null;
 app.on('ready', () => {
@@ -34,35 +33,6 @@ app.on('ready', () => {
 		mainWindow.close();
 	});
 
-	//注意handle的用法，ipcRenderer.invoke()
-	ipcMain.handle('ACTION_OPEN_DOC', async () => {
-		console.info('ipcMain ACTION_OPEN_DOC');
-		try {
-			const result = await dialog.showOpenDialog(mainWindow, {
-				buttonLabel: "打开",
-				filters: [
-					{ name: 'Tex', extensions: ['tex', 'latex', 'txt', 'md'] }
-				],
-				properties: ['openFile']
-			});
-
-			// console.log(result.canceled);
-			// console.log(result.filePaths);
-
-			if (result.canceled) return false;
-
-			const buffer = await readFile(result.filePaths[0]);
-			const content = buffer.toString();
-			//console.log(content);
-			return {
-				fileName: path.basename(result.filePaths[0]),
-				path: result.filePaths[0],
-				content: content
-			};
-		}
-		catch (err) {
-			console.log(err)
-		};
-	});
+	registerHandles(mainWindow);
 });
 

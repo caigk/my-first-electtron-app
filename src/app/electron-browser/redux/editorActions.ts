@@ -2,6 +2,7 @@
 import {
 	ACTION_NEW_DOC,
 	ACTION_OPEN_DOC, 
+	ACTION_EDITED_DOC,
 	ACTION_SAVE_DOC, 
 	ACTION_GENERATE_DOC,
 	ACTION_CLOSE
@@ -23,6 +24,14 @@ export function openDoc() {
 	};
 }
 
+export function editDoc(newContent:string) {
+	return {
+		type: ACTION_EDITED_DOC,
+		payload:{
+			newContent
+		}
+	};
+}
 
 export function saveDoc() {
 	return {
@@ -46,6 +55,7 @@ export function close() {
 const Actions = {
 	newDoc,
 	openDoc,
+	editDoc,
 	saveDoc,
 	generateDoc,
 	close
