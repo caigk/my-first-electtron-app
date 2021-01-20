@@ -2,18 +2,36 @@
 
 练习
 
-## Todo
+## Task
+
+### Todo
 
 - [ ] console
 - [ ] 模板template
 - [ ] 界面
 - [ ] 登陆与云存储
 
-## In progress
+### In progress
 
 - [ ] 编辑、保存
 - [ ] 生成、预览
 
-## Done✓
+### Done✓
 
 - [x] 没有
+
+## 技术参考
+
+. [emcascript](https://ecma-international.org)
+. [Typescript](https://www.typescriptlang.org/zh/)
+. [babel](https://babeljs.io/docs)
+. [NodeJs](http://nodejs.cn/api/)
+. [npm](https://www.npmjs.com/)
+. [webpack](https://www.webpackjs.com/concepts/)
+. [express](https://www.expressjs.com.cn/)
+. [mock](http://mockjs.com/)
+. [react](https://reactjs.org/) [中文](https://zh-hans.reactjs.org/)
+. [react-redux](https://react-redux.js.org/)
+. [redux-saga](https://redux-saga-in-chinese.js.org/)
+. [electron](https://www.electronjs.org/docs)
+. [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
