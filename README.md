@@ -27,7 +27,7 @@
 . [babel](https://babeljs.io/docs)
 . [NodeJs](http://nodejs.cn/api/)
 . [npm](https://www.npmjs.com/)
-. [webpack](https://www.webpackjs.com/concepts/)
+. [webpack](https://www.webpackjs.com/)
 . [express](https://www.expressjs.com.cn/)
 . [mock](http://mockjs.com/)
 . [react](https://reactjs.org/) [中文](https://zh-hans.reactjs.org/)
@@ -35,3 +35,10 @@
 . [redux-saga](https://redux-saga-in-chinese.js.org/)
 . [electron](https://www.electronjs.org/docs)
 . [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+
+## 其它参考
+
+. [AMD](https://requirejs.org/docs/whyamd.html)
+. [W3C](https://www.w3.org/)
+. [MDN](https://developer.mozilla.org/zh-CN/docs/Web)
+. [印记中文](https://docschina.org/)
