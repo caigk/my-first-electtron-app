@@ -9,6 +9,7 @@
 - [ ] console
 - [ ] 模板template
 - [ ] 界面
+- [ ] 皮肤
 - [ ] 登陆与云存储
 
 ### In progress
@@ -21,6 +22,8 @@
 - [x] 没有
 
 ## 技术参考
+
+### 使用
 
 . [emcascript](https://ecma-international.org)
 . [Typescript](https://www.typescriptlang.org/zh/)
@@ -36,7 +39,7 @@
 . [electron](https://www.electronjs.org/docs)
 . [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
-## 其它参考
+### 其它参考
 
 . [AMD](https://requirejs.org/docs/whyamd.html)
 . [W3C](https://www.w3.org/)
