@@ -4,15 +4,15 @@ const path = require('path');
 
 
 import {
-	ACTION_OPEN_DOC,
-	ACTION_SAVE_DOC,
-	ACTION_GENERATE_DOC,
+	EFFECT_OPEN_DOC,
+	EFFECT_SAVE_DOC,
+	EFFECT_GENERATE_DOC,
 } from "@/typings/action.d";
 
 export default function registerHandles(mainWindow: BrowserWindow) {
-	//使用：ipcRenderer.invoke(ACTION_OPEN_DOC)
-	ipcMain.handle(ACTION_OPEN_DOC, async () => {
-		console.info('ipcMain ACTION_OPEN_DOC');
+	//使用：ipcRenderer.invoke(EFFECT_OPEN_DOC)
+	ipcMain.handle(EFFECT_OPEN_DOC, async () => {
+		console.info('ipcMain EFFECT_OPEN_DOC');
 		try {
 			const result = await dialog.showOpenDialog(mainWindow, {
 				buttonLabel: "打开",
@@ -42,9 +42,9 @@ export default function registerHandles(mainWindow: BrowserWindow) {
 	});
 
 
-	//使用：ipcRenderer.invoke(ACTION_SAVE_DOC,pathInfo,content)
-	ipcMain.handle(ACTION_SAVE_DOC, async (ev, pathInfo, content) => {
-		console.info('ipcMain ACTION_SAVE_DOC');
+	//使用：ipcRenderer.invoke(EFFECT_SAVE_DOC,pathInfo,content)
+	ipcMain.handle(EFFECT_SAVE_DOC, async (ev, pathInfo, content) => {
+		console.info('ipcMain EFFECT_SAVE_DOC');
 		try {
 			// const result = await dialog.showOpenDialog(mainWindow, {
 			// 	buttonLabel: "打开",

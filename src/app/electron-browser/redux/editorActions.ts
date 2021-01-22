@@ -1,12 +1,14 @@
 
 import {
 	ACTION_NEW_DOC,
-	ACTION_OPEN_DOC, 
+	EFFECT_OPEN_DOC, 
 	ACTION_EDITED_DOC,
-	ACTION_SAVE_DOC, 
-	ACTION_GENERATE_DOC,
+	EFFECT_SAVE_DOC, 
+	EFFECT_GENERATE_DOC,
 	ACTION_CLOSE
 } from "@/typings/action.d"
+
+
 
 /**
    * 新建
@@ -20,11 +22,11 @@ export function newDoc() {
 
 export function openDoc() {
 	return {
-		type: ACTION_OPEN_DOC
+		type: EFFECT_OPEN_DOC
 	};
 }
 
-export function editDoc(newContent:string) {
+export function handleDocChanged(newContent:string) {
 	return {
 		type: ACTION_EDITED_DOC,
 		payload:{
@@ -35,13 +37,13 @@ export function editDoc(newContent:string) {
 
 export function saveDoc() {
 	return {
-		type: ACTION_SAVE_DOC
+		type: EFFECT_SAVE_DOC
 	};
 }
 
 export function generateDoc() {
 	return {
-		type: ACTION_GENERATE_DOC
+		type: EFFECT_GENERATE_DOC
 	};
 }
 
@@ -52,12 +54,24 @@ export function close() {
 	};
 }
 
+
+/**
+   * 重置状态
+   */
+
+  export function reset() {
+	return {
+		type: 'RESET'
+	};
+}
+
 const Actions = {
 	newDoc,
 	openDoc,
-	editDoc,
+	handleDocChanged,
 	saveDoc,
 	generateDoc,
-	close
+	close,
+	reset
 };
 export default Actions;

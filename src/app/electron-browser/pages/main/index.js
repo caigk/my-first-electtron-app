@@ -14,7 +14,7 @@ class Main extends Component {
         //debugger;
         const { newDoc,
             openDoc,
-            editDoc,
+            handleDocChanged,
             saveDoc,
             generateDoc,
             close
@@ -48,7 +48,7 @@ class Main extends Component {
                     ))}
                 </div>
                 <div className="row flex-fill p-1">
-                    <textarea className="col-md-6" value={content} onChange={(ev) => { editDoc(ev.target.value) }}></textarea>
+                    <textarea className="col-md-6" value={content} onChange={(ev) => { handleDocChanged(ev.target.value) }}></textarea>
                     <textarea className="col-md-6" readOnly value={content}></textarea>
                 </div>
             </main>

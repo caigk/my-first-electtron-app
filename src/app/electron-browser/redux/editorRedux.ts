@@ -13,7 +13,7 @@ import {
 import { EditorType } from '@/typings/store.d';
 
 //初始状态
-const initialState: EditorType = {
+export const initialState: EditorType = {
   errores: [],
   source: {
     fileName: undefined,
@@ -36,6 +36,9 @@ const initialState: EditorType = {
  */
 function reducer(state = initialState, action: { type: string, payload?: any }) {
   switch (action.type) {
+    case 'RESET': {
+      return initialState;
+    }
     case ACTION_NEW_DOC: {
       return {
         ...state,

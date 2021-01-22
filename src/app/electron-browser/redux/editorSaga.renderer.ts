@@ -2,11 +2,11 @@
 import { put, takeLatest, select } from 'redux-saga/effects'
 
 import {
-	ACTION_OPEN_DOC,
+	EFFECT_OPEN_DOC,
 	ACTION_OPEN_DOC_SUCCESS,
-	ACTION_SAVE_DOC,
+	EFFECT_SAVE_DOC,
 	ACTION_SAVE_DOC_SUCCESS,
-	ACTION_GENERATE_DOC,
+	EFFECT_GENERATE_DOC,
 	ACTION_ALERT,
 	ACTION_CLOSE,
 	IActionSaga
@@ -20,7 +20,7 @@ import { ipcRenderer } from 'electron';
 const ActionSaga: IActionSaga = {
 	*openDoc() {
 		try {
-			const result = yield ipcRenderer.invoke(ACTION_OPEN_DOC);
+			const result = yield ipcRenderer.invoke(EFFECT_OPEN_DOC);
 			if (!result) return;
 			yield put({
 				type: ACTION_OPEN_DOC_SUCCESS,
@@ -37,7 +37,7 @@ const ActionSaga: IActionSaga = {
 	*saveDoc() {
 		try {
 			const { fileName, path, content } = yield select(getSource);
-			const result = ipcRenderer.invoke(ACTION_SAVE_DOC, path, content)
+			const result = ipcRenderer.invoke(EFFECT_SAVE_DOC, path, content)
 			if (!result) return;
 			yield put({
 				type: ACTION_SAVE_DOC_SUCCESS,
@@ -70,9 +70,9 @@ const ActionSaga: IActionSaga = {
 
 		//yield addLisener(sagaMw);
 
-		yield takeLatest(ACTION_OPEN_DOC, ActionSaga.openDoc);
-		yield takeLatest(ACTION_SAVE_DOC, ActionSaga.saveDoc);
-		yield takeLatest(ACTION_GENERATE_DOC, ActionSaga.generateDoc);
+		yield takeLatest(EFFECT_OPEN_DOC, ActionSaga.openDoc);
+		yield takeLatest(EFFECT_SAVE_DOC, ActionSaga.saveDoc);
+		yield takeLatest(EFFECT_GENERATE_DOC, ActionSaga.generateDoc);
 		yield takeLatest(ACTION_CLOSE, ActionSaga.close);
 
 		console.info('registerWatch end ===');

@@ -1,10 +1,26 @@
-{
+'use strict';
+
+// Here's a JavaScript-based config file.
+// If you need conditional logic, you might want to use this type of config.
+// Otherwise, JSON or YAML is recommended.
+
+module.exports = {
 	"presets": [
 		"@babel/preset-env",
 		"@babel/preset-react",
 		"@babel/typescript"
 	],
 	"plugins": [
+		[
+			//模块解晰，注意不会使用tsconfig.json(集成环境使用)
+			"module-resolver",
+			{
+				"root": ["."],
+				"alias": {
+					"@": "./src"
+				}
+			}
+		],
 		[
 			"@babel/plugin-transform-runtime",
 			{

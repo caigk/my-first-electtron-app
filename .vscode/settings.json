@@ -1,0 +1,7 @@
+{
+    "mocha.files.glob": "src/**/*.spec.ts",
+    "mocha.requires": [
+        "test/babel-register.js"
+    ],
+    "mocha.runTestsOnSave": "true"
+}

@@ -2,11 +2,11 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import {
-	ACTION_OPEN_DOC,
+	EFFECT_OPEN_DOC,
 	ACTION_OPEN_DOC_SUCCESS,
-	ACTION_SAVE_DOC,
+	EFFECT_SAVE_DOC,
 	ACTION_SAVE_DOC_SUCCESS,
-	ACTION_GENERATE_DOC,
+	EFFECT_GENERATE_DOC,
 	ACTION_GENERATE_DOC_SUCCESS,
 	ACTION_ALERT,
 	ACTION_CLOSE,
@@ -147,9 +147,9 @@ const ActionSaga: IActionSaga = {
 		console.info('registerWatch start ...');
 		console.info(sagaMw);
 
-		yield takeLatest(ACTION_OPEN_DOC, ActionSaga.openDoc);
-		yield takeLatest(ACTION_SAVE_DOC, ActionSaga.saveDoc);
-		yield takeLatest(ACTION_GENERATE_DOC, ActionSaga.generateDoc);
+		yield takeLatest(EFFECT_OPEN_DOC, ActionSaga.openDoc);
+		yield takeLatest(EFFECT_SAVE_DOC, ActionSaga.saveDoc);
+		yield takeLatest(EFFECT_GENERATE_DOC, ActionSaga.generateDoc);
 		yield takeLatest(ACTION_CLOSE, ActionSaga.close);
 
 		console.info('registerWatch end ===');

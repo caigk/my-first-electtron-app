@@ -16,6 +16,7 @@
 
 - [ ] 编辑、保存
 - [ ] 生成、预览
+- [ ] 测试框架
 
 ### Done✓
 
@@ -40,6 +41,8 @@
 . [redux-saga](https://redux-saga-in-chinese.js.org/)
 . [electron](https://www.electronjs.org/docs)
 . [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+. [mochajs](https://mochajs.org/)
+. [chaijs](https://www.chaijs.com/)
 
 ### 项目参考
 
