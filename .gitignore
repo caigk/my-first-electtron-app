@@ -3,6 +3,10 @@ build
 out
 dist
 
+## nyc
+#-------------------------
+.nyc_output
+coverage
 
 ## mac
 #-------------------------

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "module": "esnext",
     "target": "esnext",
     "sourceMap": true,
@@ -14,6 +15,7 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "strict": true,
+    "jsx": "react",
     "paths": {
       "@/*": [
         "src/*"
@@ -29,3 +31,4 @@
     "jest"
   ]
 }
+

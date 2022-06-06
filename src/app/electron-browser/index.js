@@ -3,7 +3,7 @@ console.log(`the current env is ${process.env.NODE_ENV}`);
 console.log(`the current ENV is ${ENV}`); // prod,dev,local
 
 //-------------------------
-//import './App.scss';
+import './App.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

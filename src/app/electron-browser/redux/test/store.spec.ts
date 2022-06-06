@@ -1,16 +1,40 @@
 import {  assert } from 'chai';
-console.log('pwd >> '+__dirname);
+
+
+import {
+  ACTION_NEW_DOC,
+  ACTION_OPEN_DOC_SUCCESS,
+  ACTION_EDITED_DOC,
+  ACTION_SAVE_DOC_SUCCESS,
+  ACTION_GENERATE_DOC_SUCCESS,
+  ACTION_ALERT
+} from '@/typings/action.d';
 
 import reducer,{initialState } from '../editorRedux';
-const  {reset} = require('../editorActions');
+const  {
+  reset,
+  newDoc,
+  openDoc
+} = require('../editorActions');
 
-console.log(reducer);
+describe('store测试集', function () {
 
-describe('store', function () {
-  describe('reset', function () {
+  beforeEach(()=>{
+    console.log('before each ...');
+  });
+
+  describe('ACTION: reset', function () {
     const newStat = reducer(initialState,reset());
     it('重置状态等于初始状态', function () {
       assert.deepEqual(initialState,newStat);
     });
   });
+
+  describe('ACTION: newDoc', function () {
+    const newStat = reducer(initialState,newDoc());
+    it('状态检测', function () {
+      assert.deepEqual(initialState,newStat);
+    });
+  });
+
 })

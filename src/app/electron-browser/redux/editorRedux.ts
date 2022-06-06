@@ -24,8 +24,8 @@ export const initialState: EditorType = {
     content: '',
   },
   target: {
-    fileName: null,
-    path: null
+    fileName: undefined,
+    path: undefined
   }
 };
 
@@ -43,16 +43,16 @@ function reducer(state = initialState, action: { type: string, payload?: any }) 
       return {
         ...state,
         source: {
-          fileName: null,
+          fileName: undefined,
           type: 'md',
-          title: null,
-          path: null,
+          title: undefined,
+          path: undefined,
           content0: '',
           content: '',
         },
         target: {
-          fileName: null,
-          path: null
+          fileName: undefined,
+          path: undefined
         }
       };
     }

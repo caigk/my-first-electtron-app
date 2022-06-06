@@ -22,6 +22,10 @@
 
 - [x] 没有
 
+## 环境要求
+
+* node 
+
 ## 技术参考
 
 ![Js技术栈](resources/Js技术栈.png)
@@ -43,6 +47,7 @@
 . [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 . [mochajs](https://mochajs.org/)
 . [chaijs](https://www.chaijs.com/)
+. [nyc istanbul](https://istanbul.js.org/)
 
 ### 项目参考
 

@@ -14,6 +14,7 @@ module.exports = merge(common, {
 	mode: 'development',
 	devServer: {
 		contentBase: './',
+		
 		before(app) {
 			Mock(app)
 		}
@@ -47,7 +48,7 @@ module.exports = merge(common, {
 				use: ['style-loader', 'css-loader', 'stylus-loader']
 			},
 			{
-				test: /(\.jsx|\.js)$/,
+				test: /(\.jsx|\.js|\.ts|\.tsx)$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader'
 			},

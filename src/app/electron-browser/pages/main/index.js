@@ -5,6 +5,10 @@ import clsx from 'clsx';
 
 import EditorAction from '../../redux/editorActions';
 
+//import Editor from '../../components/editor';
+
+// import Previewer from '../../components/preview';
+import LazyLog from '../../components/lazy-log';
 
 class Main extends Component {
     constructor(props) {
@@ -48,9 +52,10 @@ class Main extends Component {
                     ))}
                 </div>
                 <div className="row flex-fill p-1">
-                    <textarea className="col-md-6" value={content} onChange={(ev) => { handleDocChanged(ev.target.value) }}></textarea>
-                    <textarea className="col-md-6" readOnly value={content}></textarea>
+                    {/* <Editor className="col-md-6" content={content} onChange={(newC) => { handleDocChanged(newC) }}></Editor> */}
+                    {/* <Previewer className="col-md-6" readOnly value={content}></Previewer> */}
                 </div>
+                <LazyLog></LazyLog>
             </main>
         );
     }
