@@ -5,9 +5,9 @@ import clsx from 'clsx';
 
 import EditorAction from '../../redux/editorActions';
 
-//import Editor from '../../components/editor';
+import Editor from '../../components/editor';
+import Previewer from '../../components/preview';
 
-// import Previewer from '../../components/preview';
 import LazyLog from '../../components/lazy-log';
 
 class Main extends Component {
@@ -52,8 +52,8 @@ class Main extends Component {
                     ))}
                 </div>
                 <div className="row flex-fill p-1">
-                    {/* <Editor className="col-md-6" content={content} onChange={(newC) => { handleDocChanged(newC) }}></Editor> */}
-                    {/* <Previewer className="col-md-6" readOnly value={content}></Previewer> */}
+                    <Editor className="col-md-6" content={content} onChange={(newC) => { handleDocChanged(newC) }}></Editor>
+                    <Previewer className="col-md-6" readOnly value={content}></Previewer>
                 </div>
                 <LazyLog></LazyLog>
             </main>

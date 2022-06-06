@@ -13,10 +13,11 @@ module.exports = merge(common, {
 	devtool: 'inline-source-map',
 	mode: 'development',
 	devServer: {
-		contentBase: './',
-		
-		before(app) {
-			Mock(app)
+		static: {
+			directory: path.join(__dirname, './'),
+		},
+		onBeforeSetupMiddleware(devServer) {
+			Mock(devServer.app)
 		}
 	},
 	plugins: [
